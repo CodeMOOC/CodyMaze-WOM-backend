@@ -1,0 +1,16 @@
+name: codymaze-wom
+description: WOM processor for CodyMaze.
+version: 0.0.1
+author: Gian Marco Di Francesco
+
+environment:
+  sdk: ">=2.0.0 <3.0.0"
+
+dependencies:
+  aqueduct: 3.3.0+1
+  uuid:
+  encrypt: ^4.0.2
+
+dev_dependencies:
+  test: ^1.0.0
+  aqueduct_test: ^1.0.0
