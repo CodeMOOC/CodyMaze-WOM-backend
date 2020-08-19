@@ -16,7 +16,7 @@ class RequestVerificationResponse {
 
   RequestVerificationResponse.fromMap(Map<String, dynamic> map)
       : registryUrl = map[REGISTRY_URL] as String,
-        nonce = map[NONCE]as String,
-        password = map[PASSWORD]as String,
-        otc = map[OTC]as String;
+        nonce = map[NONCE] as String,
+        password = map[PASSWORD] as String,
+        otc = map[OTC] as String;
 }

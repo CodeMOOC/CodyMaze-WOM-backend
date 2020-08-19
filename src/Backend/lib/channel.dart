@@ -8,7 +8,6 @@ String registryPublicKey;
 String sourceId;
 
 class MirabilandiaChannel extends ApplicationChannel {
-
   @override
   Future prepare() async {
     // Load configuration values onto globals
@@ -18,29 +17,27 @@ class MirabilandiaChannel extends ApplicationChannel {
 
     registryPublicKey = await getRegistryPublicKey();
 
-    logger.onRecord.listen((rec) => print("$rec ${rec.error ?? ""} ${rec.stackTrace ?? ""}"));
+    logger.onRecord.listen(
+        (rec) => print("$rec ${rec.error ?? ""} ${rec.stackTrace ?? ""}"));
   }
 
   @override
   Controller get entryPoint {
     final router = Router();
 
-    router
-      .route("/")
-      .linkFunction((request) async {
-        return Response.ok("We are live!");
-      });
+    router.route("/").linkFunction((request) async {
+      return Response.ok("We are live!");
+    });
 
-    router
-      .route("/vouchers")
-      .link(() => WomController(WomRepository()));
+    router.route("/vouchers").link(() => WomController(WomRepository()));
 
     return router;
   }
 
-  Future<String> getRegistryPublicKey()async{
-    final registryPublicKeyResponse = await http.get('https://$womDomain/api/v2/auth/key');
-   return registryPublicKeyResponse.body;
+  Future<String> getRegistryPublicKey() async {
+    final registryPublicKeyResponse =
+        await http.get('https://$womDomain/api/v2/auth/key');
+    return registryPublicKeyResponse.body;
   }
 }
 
