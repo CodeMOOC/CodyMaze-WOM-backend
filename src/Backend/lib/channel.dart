@@ -21,6 +21,12 @@ class MirabilandiaChannel extends ApplicationChannel {
     final router = Router();
 
     router
+      .route("/")
+      .linkFunction((request) async {
+        return Response.ok("We are live!");
+      });
+
+    router
       .route("/vouchers")
       .link(() => WomController(WomRepository()));
 
