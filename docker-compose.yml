@@ -14,4 +14,4 @@ services:
     env_file:
     - config.env
     volumes:
-    - ./keys:/keys:ro
+    - ./keys:/private:ro

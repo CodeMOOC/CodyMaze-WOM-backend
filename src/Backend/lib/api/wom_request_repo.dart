@@ -43,7 +43,7 @@ class WomRepository {
 
       final parser = RSAKeyParser();
       final publicKey = parser.parse(registryPublicKey) as RSAPublicKey;
-      final privKey = await parseKeyFromFile<RSAPrivateKey>('/keys/codymaze.pem');
+      final privKey = await parseKeyFromFile<RSAPrivateKey>('/private/codymaze.pem');
 
       final encrypter = Encrypter(RSA(publicKey: publicKey, privateKey: privKey));
 
@@ -85,7 +85,7 @@ class WomRepository {
 
       final parser = RSAKeyParser();
       final publicKey = parser.parse(registryPublicKey) as RSAPublicKey;
-      final privKey = await parseKeyFromFile<RSAPrivateKey>('/keys/codymaze.pem');
+      final privKey = await parseKeyFromFile<RSAPrivateKey>('/private/codymaze.pem');
 
       final encrypter = Encrypter(RSA(publicKey: publicKey, privateKey: privKey));
 
