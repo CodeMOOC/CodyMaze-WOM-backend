@@ -5,14 +5,19 @@ import 'mirabilandia.dart';
 
 String womDomain;
 String registryPublicKey;
+String sourceId;
 
 class MirabilandiaChannel extends ApplicationChannel {
 
   @override
   Future prepare() async {
+    // Load configuration values onto globals
     final config = MyConfiguration(options.configurationFilePath);
     womDomain = config.womDomain;
+    sourceId = config.sourceId;
+
     registryPublicKey = await getRegistryPublicKey();
+
     logger.onRecord.listen((rec) => print("$rec ${rec.error ?? ""} ${rec.stackTrace ?? ""}"));
   }
 
@@ -43,4 +48,5 @@ class MyConfiguration extends Configuration {
   MyConfiguration(String fileName) : super.fromFile(File(fileName));
 
   String womDomain;
+  String sourceId;
 }
