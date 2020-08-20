@@ -29,8 +29,8 @@ class WomRepository {
         'Nonce': nonce,
         'Vouchers': [
           <String, dynamic>{
-            'Latitude': clientRequest.lat,
-            'Longitude': clientRequest.long,
+            'Latitude': 43.7292635,
+            'Longitude': 12.6129107,
             'Aim': 'E',
             'Count': 30,
             'Timestamp': DateTime.now().toIso8601String(),
