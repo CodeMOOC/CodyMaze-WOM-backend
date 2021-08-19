@@ -1,12 +1,13 @@
 FROM google/dart
 
 WORKDIR /app
-ADD pubspec.* /app/
-RUN pub get --no-precompile
-ADD . /app/
-RUN pub get --offline --no-precompile
+COPY pubspec.yaml .
+RUN dart pub get
+COPY . ./
+RUN dart pub get --offline
+RUN dart compile exe /app/bin/main.dart -o /app/bin/server
 
-WORKDIR /app
-EXPOSE 80
-
-ENTRYPOINT ["pub", "run", "aqueduct:aqueduct", "serve", "--port", "80"]
+FROM subfuzion/dart:slim
+COPY --from=0 /app/bin/server /app/bin/server
+EXPOSE 8080
+ENTRYPOINT ["/app/bin/server"]
