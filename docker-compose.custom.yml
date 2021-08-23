@@ -11,3 +11,4 @@ services:
     - "traefik.frontend.rule=Host:codymaze.wom.social"
     - "traefik.frontend.entryPoints=http,https"
     - "traefik.frontend.redirect.entryPoint=https"
+    restart: unless-stopped
