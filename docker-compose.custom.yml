@@ -7,7 +7,7 @@ services:
     - "traefik.enable=true"
     - "traefik.docker.network=web"
     - "traefik.protocol=http"
-    - "traefik.port=80"
+    - "traefik.port=8080"
     - "traefik.frontend.rule=Host:codymaze.wom.social"
     - "traefik.frontend.entryPoints=http,https"
     - "traefik.frontend.redirect.entryPoint=https"

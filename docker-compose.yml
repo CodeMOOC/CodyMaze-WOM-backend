@@ -10,7 +10,7 @@ services:
     networks:
     - web
     expose:
-    - "80"
+    - "8080"
     env_file:
     - config.env
     volumes:
