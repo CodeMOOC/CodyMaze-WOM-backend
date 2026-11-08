@@ -1,0 +1,64 @@
+version: '3'
+
+dotenv:
+  - config.env
+
+vars:
+  DC: docker compose
+  DC_RUN: '{{.DC}} run --rm'
+
+tasks:
+  default:
+    desc: List available tasks
+    cmds:
+      - task --list
+    silent: true
+
+  cmd:
+    desc: Show the docker compose command in use
+    cmds:
+      - echo 'Docker-Compose command:'
+      - echo '{{.DC}}'
+
+  up:
+    desc: Start the backend service (detached)
+    cmds:
+      - '{{.DC}} up -d backend'
+      - '{{.DC}} ps'
+      - echo
+      - echo 'Service is now up'
+      - echo
+
+  ps:
+    desc: List running services
+    cmds:
+      - '{{.DC}} ps'
+
+  rs:
+    desc: Restart services
+    cmds:
+      - '{{.DC}} restart'
+
+  rebuild:
+    desc: Remove and rebuild the backend image, then start it
+    cmds:
+      - '{{.DC}} rm -sf backend'
+      - '{{.DC}} up -d --build backend'
+
+  stop:
+    desc: Stop services
+    cmds:
+      - '{{.DC}} stop'
+
+  rm:
+    desc: Stop services and remove containers
+    aliases: [rmc]
+    deps: [stop]
+    prompt: 'Stop and remove all containers? (use --yes for non-interactive runs)'
+    cmds:
+      - '{{.DC}} rm -f'
+
+  logs:
+    desc: Follow backend container logs
+    cmds:
+      - 'docker logs -f $({{.DC}} ps -q backend)'
